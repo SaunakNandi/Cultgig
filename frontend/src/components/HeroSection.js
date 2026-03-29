@@ -5,58 +5,121 @@ const floatingImages = [
   {
     src: 'https://images.pexels.com/photos/6605133/pexels-photo-6605133.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop',
     alt: 'Singer',
-    className: 'w-24 h-28 sm:w-32 sm:h-36 rounded-2xl',
-    position: 'absolute -left-4 sm:left-[4%] lg:left-[8%] top-[12%] sm:top-[8%]',
+    label: 'Vocalist',
+    size: 'w-[100px] h-[120px] sm:w-[130px] sm:h-[150px]',
+    position: 'left-[2%] sm:left-[10%] lg:left-[14%] top-[6%] sm:top-[5%]',
     delay: 0.3,
-    rotate: -8,
-    border: 'border-2 border-[#FFB902]/40',
+    rotate: -6,
+    floatDuration: 5,
+    floatY: 12,
   },
   {
     src: 'https://images.pexels.com/photos/6154775/pexels-photo-6154775.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop',
     alt: 'Creative',
-    className: 'w-20 h-24 sm:w-28 sm:h-32 rounded-2xl',
-    position: 'absolute -right-2 sm:right-[5%] lg:right-[9%] top-[6%] sm:top-[4%]',
+    label: 'DJ',
+    size: 'w-[90px] h-[110px] sm:w-[120px] sm:h-[140px]',
+    position: 'right-[2%] sm:right-[10%] lg:right-[14%] top-[4%] sm:top-[3%]',
     delay: 0.5,
-    rotate: 6,
-    border: 'border-2 border-white/20',
+    rotate: 7,
+    floatDuration: 6,
+    floatY: 14,
   },
   {
     src: 'https://images.unsplash.com/photo-1681855178578-4535aba9b305?w=300&h=300&fit=crop&crop=faces',
     alt: 'Guitarist',
-    className: 'w-28 h-32 sm:w-36 sm:h-40 rounded-2xl',
-    position: 'absolute left-2 sm:left-[2%] lg:left-[5%] bottom-[18%] sm:bottom-[12%]',
+    label: 'Guitarist',
+    size: 'w-[110px] h-[130px] sm:w-[140px] sm:h-[160px]',
+    position: 'left-[0%] sm:left-[6%] lg:left-[10%] bottom-[14%] sm:bottom-[10%]',
     delay: 0.7,
-    rotate: 5,
-    border: 'border-2 border-[#FFB902]/30',
+    rotate: 4,
+    floatDuration: 5.5,
+    floatY: 10,
   },
   {
     src: 'https://images.unsplash.com/photo-1666078056875-2ae542f936c8?w=300&h=300&fit=crop&crop=faces',
     alt: 'Musician',
-    className: 'w-24 h-28 sm:w-32 sm:h-36 rounded-2xl',
-    position: 'absolute -right-4 sm:right-[3%] lg:right-[6%] bottom-[20%] sm:bottom-[14%]',
+    label: 'Acoustic',
+    size: 'w-[100px] h-[120px] sm:w-[130px] sm:h-[150px]',
+    position: 'right-[0%] sm:right-[7%] lg:right-[11%] bottom-[16%] sm:bottom-[12%]',
     delay: 0.4,
     rotate: -5,
-    border: 'border-2 border-white/15',
+    floatDuration: 6.5,
+    floatY: 13,
   },
   {
     src: 'https://images.pexels.com/photos/14037568/pexels-photo-14037568.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop',
     alt: 'Performer',
-    className: 'hidden sm:block w-20 h-24 rounded-xl',
-    position: 'absolute left-[18%] lg:left-[20%] top-[2%]',
+    label: 'Live Act',
+    size: 'hidden lg:block w-[100px] h-[115px]',
+    position: 'left-[24%] lg:left-[24%] top-[0%]',
     delay: 0.6,
     rotate: 3,
-    border: 'border-2 border-[#FFB902]/20',
+    floatDuration: 7,
+    floatY: 9,
   },
   {
     src: 'https://images.unsplash.com/photo-1760574740646-b25398710806?w=200&h=200&fit=crop&crop=faces',
     alt: 'DJ',
-    className: 'hidden sm:block w-20 h-24 rounded-xl',
-    position: 'absolute right-[16%] lg:right-[18%] bottom-[8%]',
+    label: 'Producer',
+    size: 'hidden lg:block w-[100px] h-[115px]',
+    position: 'right-[22%] lg:right-[22%] bottom-[6%]',
     delay: 0.8,
-    rotate: -4,
-    border: 'border-2 border-white/10',
+    rotate: -3,
+    floatDuration: 5.8,
+    floatY: 11,
   },
 ];
+
+function ArtistCard({ img, index }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.6, y: 40 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      transition={{ delay: img.delay, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+      className={`absolute ${img.position} z-[5]`}
+    >
+      <motion.div
+        animate={{ y: [0, -img.floatY, 0] }}
+        transition={{ duration: img.floatDuration, repeat: Infinity, ease: 'easeInOut' }}
+        whileHover={{ scale: 1.08, zIndex: 20 }}
+        className="relative group cursor-pointer"
+        style={{ transform: `rotate(${img.rotate}deg)` }}
+      >
+        {/* Glow behind card on hover */}
+        <div className="absolute -inset-3 rounded-3xl bg-[#FFB902]/0 group-hover:bg-[#FFB902]/15 blur-xl transition-all duration-500 pointer-events-none" />
+
+        {/* Image container */}
+        <div
+          className={`${img.size} relative rounded-2xl overflow-hidden border-2 border-white/10 group-hover:border-[#FFB902]/60 transition-all duration-500 shadow-[0_8px_30px_rgba(0,0,0,0.5)] group-hover:shadow-[0_8px_40px_rgba(255,185,2,0.2)]`}
+        >
+          <img
+            src={img.src}
+            alt={img.alt}
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+            loading="lazy"
+          />
+          {/* Gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-80" />
+
+          {/* Label tag */}
+          <div className="absolute bottom-2 left-2 right-2 flex items-center gap-1.5">
+            <div className="px-2 py-0.5 rounded-full bg-[#FFB902]/20 backdrop-blur-sm border border-[#FFB902]/30">
+              <span className="text-[9px] sm:text-[10px] font-bold text-[#FFB902] whitespace-nowrap">{img.label}</span>
+            </div>
+          </div>
+
+          {/* Shine effect on hover */}
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-tr from-transparent via-white/5 to-transparent pointer-events-none" />
+        </div>
+
+        {/* Online dot */}
+        <div className="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-[#22c55e] border-2 border-[#0A0A0A] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div className="absolute inset-0 rounded-full bg-[#22c55e] animate-ping opacity-40" />
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
 
 export default function HeroSection() {
   return (
@@ -80,25 +143,7 @@ export default function HeroSection() {
 
       {/* Floating artist images */}
       {floatingImages.map((img, i) => (
-        <motion.div
-          key={i}
-          initial={{ opacity: 0, scale: 0.7, y: 30 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ delay: img.delay, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className={`${img.position} z-[5]`}
-        >
-          <div
-            className={`${img.className} ${img.border} overflow-hidden shadow-2xl shadow-black/40`}
-            style={{ transform: `rotate(${img.rotate}deg)` }}
-          >
-            <img
-              src={img.src}
-              alt={img.alt}
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
-          </div>
-        </motion.div>
+        <ArtistCard key={i} img={img} index={i} />
       ))}
 
       {/* Center content */}
