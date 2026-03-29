@@ -1,6 +1,62 @@
 import { motion } from 'framer-motion';
 import { Apple, Play } from 'lucide-react';
-import PhoneMockup from './PhoneMockup';
+
+const floatingImages = [
+  {
+    src: 'https://images.pexels.com/photos/6605133/pexels-photo-6605133.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop',
+    alt: 'Singer',
+    className: 'w-24 h-28 sm:w-32 sm:h-36 rounded-2xl',
+    position: 'absolute -left-4 sm:left-[4%] lg:left-[8%] top-[12%] sm:top-[8%]',
+    delay: 0.3,
+    rotate: -8,
+    border: 'border-2 border-[#FFB902]/40',
+  },
+  {
+    src: 'https://images.pexels.com/photos/6154775/pexels-photo-6154775.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop',
+    alt: 'Creative',
+    className: 'w-20 h-24 sm:w-28 sm:h-32 rounded-2xl',
+    position: 'absolute -right-2 sm:right-[5%] lg:right-[9%] top-[6%] sm:top-[4%]',
+    delay: 0.5,
+    rotate: 6,
+    border: 'border-2 border-white/20',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1681855178578-4535aba9b305?w=300&h=300&fit=crop&crop=faces',
+    alt: 'Guitarist',
+    className: 'w-28 h-32 sm:w-36 sm:h-40 rounded-2xl',
+    position: 'absolute left-2 sm:left-[2%] lg:left-[5%] bottom-[18%] sm:bottom-[12%]',
+    delay: 0.7,
+    rotate: 5,
+    border: 'border-2 border-[#FFB902]/30',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1666078056875-2ae542f936c8?w=300&h=300&fit=crop&crop=faces',
+    alt: 'Musician',
+    className: 'w-24 h-28 sm:w-32 sm:h-36 rounded-2xl',
+    position: 'absolute -right-4 sm:right-[3%] lg:right-[6%] bottom-[20%] sm:bottom-[14%]',
+    delay: 0.4,
+    rotate: -5,
+    border: 'border-2 border-white/15',
+  },
+  {
+    src: 'https://images.pexels.com/photos/14037568/pexels-photo-14037568.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop',
+    alt: 'Performer',
+    className: 'hidden sm:block w-20 h-24 rounded-xl',
+    position: 'absolute left-[18%] lg:left-[20%] top-[2%]',
+    delay: 0.6,
+    rotate: 3,
+    border: 'border-2 border-[#FFB902]/20',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1760574740646-b25398710806?w=200&h=200&fit=crop&crop=faces',
+    alt: 'DJ',
+    className: 'hidden sm:block w-20 h-24 rounded-xl',
+    position: 'absolute right-[16%] lg:right-[18%] bottom-[8%]',
+    delay: 0.8,
+    rotate: -4,
+    border: 'border-2 border-white/10',
+  },
+];
 
 export default function HeroSection() {
   return (
@@ -11,24 +67,46 @@ export default function HeroSection() {
     >
       {/* Background glow */}
       <div className="absolute inset-0 golden-glow opacity-60" />
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-[#FFB902]/[0.06] blur-[120px]" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-[#FFB902]/[0.07] blur-[120px]" />
 
-      {/* Background texture image */}
+      {/* Background texture */}
       <div
-        className="absolute inset-0 opacity-[0.06] mix-blend-overlay bg-cover bg-center"
+        className="absolute inset-0 opacity-[0.05] mix-blend-overlay bg-cover bg-center"
         style={{
           backgroundImage:
             "url('https://images.unsplash.com/photo-1765224747170-be7b97010052?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODF8MHwxfHNlYXJjaHwyfHxjb25jZXJ0JTIwc3RhZ2UlMjBkYXJrJTIwc3BvdGxpZ2h0fGVufDB8fHx8MTc3NDc2MzcxOHww&ixlib=rb-4.1.0&q=85')",
         }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-        {/* Left content */}
+      {/* Floating artist images */}
+      {floatingImages.map((img, i) => (
+        <motion.div
+          key={i}
+          initial={{ opacity: 0, scale: 0.7, y: 30 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ delay: img.delay, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className={`${img.position} z-[5]`}
+        >
+          <div
+            className={`${img.className} ${img.border} overflow-hidden shadow-2xl shadow-black/40`}
+            style={{ transform: `rotate(${img.rotate}deg)` }}
+          >
+            <img
+              src={img.src}
+              alt={img.alt}
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        </motion.div>
+      ))}
+
+      {/* Center content */}
+      <div className="relative z-10 max-w-3xl mx-auto px-6 lg:px-8 w-full text-center">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center lg:text-left"
         >
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -45,13 +123,13 @@ export default function HeroSection() {
             <span className="text-gradient-gold">is Waiting.</span>
           </h1>
 
-          <p className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 mb-8">
+          <p className="text-[#A3A3A3] text-base sm:text-lg leading-relaxed max-w-xl mx-auto mb-8">
             Indgig connects artists and freelancers with venues and businesses.
             Discover, book, and manage gigs — all in one platform.
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start mb-8">
+          <div className="flex flex-col sm:flex-row items-center gap-4 justify-center mb-8">
             <a
               href="#download"
               data-testid="hero-cta-download"
@@ -68,33 +146,27 @@ export default function HeroSection() {
             </a>
           </div>
 
-          {/* Trusted by artists - avatar row */}
-          <div className="flex items-center gap-3 justify-center lg:justify-start mb-8">
-            <div className="flex -space-x-3">
-              {[
-                'https://images.pexels.com/photos/6605133/pexels-photo-6605133.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
-                'https://images.pexels.com/photos/6154775/pexels-photo-6154775.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
-                'https://images.unsplash.com/photo-1681855178578-4535aba9b305?w=100&h=100&fit=crop&crop=faces',
-                'https://images.pexels.com/photos/14037568/pexels-photo-14037568.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
-                'https://images.unsplash.com/photo-1666078056875-2ae542f936c8?w=100&h=100&fit=crop&crop=faces',
-              ].map((src, i) => (
-                <img
-                  key={i}
-                  src={src}
-                  alt={`Artist ${i + 1}`}
-                  className="w-9 h-9 rounded-full border-2 border-[#0A0A0A] object-cover"
-                  loading="lazy"
-                />
-              ))}
-            </div>
-            <div className="text-left">
-              <p className="text-sm font-semibold text-white leading-tight">500+ Artists</p>
-              <p className="text-xs text-[#A3A3A3]">already on the platform</p>
-            </div>
-          </div>
+          {/* Stats row */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.6 }}
+            className="flex items-center justify-center gap-8 sm:gap-12 mb-10"
+          >
+            {[
+              { num: '500+', label: 'Artists' },
+              { num: '4.7', label: 'Rating' },
+              { num: '1K+', label: 'Gigs Booked' },
+            ].map((stat, i) => (
+              <div key={i} className="text-center">
+                <p className="font-heading font-extrabold text-lg sm:text-xl text-white">{stat.num}</p>
+                <p className="text-[10px] sm:text-xs text-[#A3A3A3] mt-0.5">{stat.label}</p>
+              </div>
+            ))}
+          </motion.div>
 
           {/* App store badges */}
-          <div className="flex items-center gap-4 justify-center lg:justify-start">
+          <div className="flex items-center gap-4 justify-center">
             <a
               href="#"
               data-testid="hero-appstore-badge"
@@ -117,18 +189,6 @@ export default function HeroSection() {
                 <p className="text-sm font-semibold text-white leading-tight">Google Play</p>
               </div>
             </a>
-          </div>
-        </motion.div>
-
-        {/* Right - Phone Mockup */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: 40 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="flex justify-center lg:justify-end"
-        >
-          <div className="animate-float">
-            <PhoneMockup />
           </div>
         </motion.div>
       </div>

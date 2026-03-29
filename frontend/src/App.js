@@ -4,7 +4,6 @@ import HeroSection from "./components/HeroSection";
 import HowItWorks from "./components/HowItWorks";
 import FeaturesGrid from "./components/FeaturesGrid";
 import StatsStrip from "./components/StatsStrip";
-import ArtistShowcase from "./components/ArtistShowcase";
 import WaitlistSection from "./components/WaitlistSection";
 import AppDownloadCTA from "./components/AppDownloadCTA";
 import Footer from "./components/Footer";
@@ -17,7 +16,6 @@ function App() {
       <HowItWorks />
       <FeaturesGrid />
       <StatsStrip />
-      <ArtistShowcase />
       <WaitlistSection />
       <AppDownloadCTA />
       <Footer />
