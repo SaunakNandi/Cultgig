@@ -46,13 +46,13 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Download button (desktop) */}
+        {/* Sign In button (desktop) */}
         <a
-          href="#download"
-          data-testid="nav-download-btn"
-          className="hidden md:inline-flex items-center px-5 py-2.5 rounded-full bg-[#FFB902] text-black font-semibold text-sm hover:bg-[#E5A600] transition-all duration-300 glow-gold-hover"
+          href="#"
+          data-testid="nav-signin-btn"
+          className="hidden md:inline-flex items-center px-5 py-2.5 rounded-full bg-transparent border-2 border-[#FFB902] text-[#FFB902] font-semibold text-sm hover:bg-[#FFB902] hover:text-black transition-all duration-300"
         >
-          Download App
+          Sign In
         </a>
 
         {/* Mobile hamburger */}
@@ -86,11 +86,11 @@ export default function Navbar() {
                 </a>
               ))}
               <a
-                href="#download"
-                className="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-[#FFB902] text-black font-semibold text-sm hover:bg-[#E5A600] transition-all duration-300"
+                href="#"
+                className="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-transparent border-2 border-[#FFB902] text-[#FFB902] font-semibold text-sm hover:bg-[#FFB902] hover:text-black transition-all duration-300"
                 onClick={() => setMobileOpen(false)}
               >
-                Download App
+                Sign In
               </a>
             </div>
           </motion.div>
