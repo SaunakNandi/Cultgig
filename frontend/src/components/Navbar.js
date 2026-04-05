@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from "react";
+import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
-  { label: 'How It Works', href: '#how-it-works' },
-  { label: 'Features', href: '#features' },
-  { label: 'Waitlist', href: '#waitlist' },
+  { label: "How It Works", href: "#how-it-works" },
+  { label: "Features", href: "#features" },
+  { label: "Waitlist", href: "#waitlist" },
 ];
 
 export default function Navbar() {
@@ -14,20 +14,26 @@ export default function Navbar() {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
     <nav
       data-testid="navbar"
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? 'navbar-blur' : 'bg-transparent'
+      className={`sticky top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "navbar-blur shadow-[0_14px_38px_rgba(0,0,0,0.32),0_4px_14px_rgba(255,185,2,0.12)]"
+          : "bg-transparent shadow-[0_8px_24px_rgba(0,0,0,0.14)]"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-16 md:h-20">
         {/* Logo */}
-        <a href="#hero" className="flex items-center gap-1" data-testid="nav-logo">
+        <a
+          href="#hero"
+          className="flex items-center gap-1"
+          data-testid="nav-logo"
+        >
           <span className="font-heading text-2xl font-extrabold tracking-tight text-white">
             Ind<span className="text-[#FFB902]">gig</span>
           </span>
@@ -70,7 +76,7 @@ export default function Navbar() {
         {mobileOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
+            animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden overflow-hidden bg-[#0A0A0A]/95 backdrop-blur-xl border-t border-white/10"
           >
