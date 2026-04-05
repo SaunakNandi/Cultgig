@@ -1,16 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --bg: #0A0A0A;
+  --bg: #0a0a0a;
   --surface: #111111;
-  --primary: #FFB902;
-  --primary-hover: #E5A600;
-  --text-primary: #FFFFFF;
-  --text-secondary: #A3A3A3;
+  --primary: #eaff00;
+  --primary-hover: #d4e800;
+  --text-primary: #ffffff;
+  --text-secondary: #c8c8c8;
   --glass-bg: rgba(255, 255, 255, 0.03);
   --glass-border: rgba(255, 255, 255, 0.1);
   --glow: rgba(255, 185, 2, 0.15);
@@ -31,14 +31,19 @@
   body {
     background-color: var(--bg);
     color: var(--text-primary);
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: "Plus Jakarta Sans", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Syne', sans-serif;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Syne", sans-serif;
   }
 
   ::selection {
@@ -66,7 +71,7 @@
 
 @layer utilities {
   .text-gradient-gold {
-    background: linear-gradient(135deg, #FFB902 0%, #FFD966 50%, #FFB902 100%);
+    background: linear-gradient(135deg, #ffb902 0%, #ffd966 50%, #ffb902 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -88,10 +93,10 @@
   }
 
   .font-heading {
-    font-family: 'Syne', sans-serif;
+    font-family: "Syne", sans-serif;
   }
 
   .font-body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: "Plus Jakarta Sans", sans-serif;
   }
 }
